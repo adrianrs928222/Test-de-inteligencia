@@ -1,282 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Test de inteligencia real para detectar si eres superdotado">
-  <title>Test de Inteligencia Real</title>
-  <style>
-    :root {
-      --bg: #f8f9fa;
-      --primary: #222;
-      --accent: #007bff;
-      --card: #fff;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg);
-      color: var(--primary);
-      padding: 20px;
-      line-height: 1.6;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    header h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      color: #555;
-    }
-
-    .test-container {
-      max-width: 700px;
-      margin: auto;
-      background: var(--card);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-    }
-
-    .question {
-      margin-bottom: 25px;
-    }
-
-    .question h3 {
-      margin-bottom: 10px;
-      font-size: 1.1em;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    label:hover {
-      color: var(--accent);
-    }
-
-    input[type="radio"] {
-      margin-right: 10px;
-      transform: scale(1.2);
-    }
-
-    button {
-      display: block;
-      width: 100%;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 15px;
-      font-size: 1em;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 30px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 600px) {
-      .test-container {
-        padding: 20px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test de Superdotación</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <main class="container">
+    <h1>🧠 Test de Inteligencia: ¿Eres Superdotado?</h1>
+    <form id="intelligenceTest">
+      <p class="intro">Responde eligiendo la opción que más te represente. No hay respuestas correctas.</p>
 
-  <header>
-    <h1>Test de Inteligencia Real</h1>
-    <p>¿Tienes mente superdotada? Descúbrelo con este test.</p>
-  </header>
+      <div class="question">
+        <p>1. Si el mundo se reiniciara mañana, ¿qué conservarías?</p>
+        <label><input type="radio" name="q1" value="A"> A) El conocimiento</label>
+        <label><input type="radio" name="q1" value="B"> B) Las emociones</label>
+        <label><input type="radio" name="q1" value="C"> C) El instinto</label>
+      </div>
 
-  <form class="test-container">
+      <div class="question">
+        <p>2. ¿Cómo te enfrentas a lo que no entiendes?</p>
+        <label><input type="radio" name="q2" value="A"> A) Investigo hasta entenderlo</label>
+        <label><input type="radio" name="q2" value="B"> B) Acepto que no todo tiene explicación</label>
+        <label><input type="radio" name="q2" value="C"> C) Intento entenderlo desde otro enfoque</label>
+      </div>
 
-    <div class="question">
-      <h3>1. Estás caminando y escuchas una frase absurda. ¿Qué haces?</h3>
-      <label><input type="radio" name="q1"> A) Me da risa y sigo.</label>
-      <label><input type="radio" name="q1"> B) Me quedo pensando si había algo interesante detrás.</label>
-      <label><input type="radio" name="q1"> C) Sigo como si nada.</label>
-    </div>
+      <div class="question">
+        <p>3. Si estás solo en una habitación vacía durante horas, ¿qué haces?</p>
+        <label><input type="radio" name="q3" value="A"> A) Imagino escenarios y soluciones</label>
+        <label><input type="radio" name="q3" value="B"> B) Me observo y reflexiono</label>
+        <label><input type="radio" name="q3" value="C"> C) Juego mentalmente con ideas</label>
+      </div>
 
-    <div class="question">
-      <h3>2. ¿Cómo aprendes mejor algo difícil?</h3>
-      <label><input type="radio" name="q2"> A) Viendo un video o ejemplo.</label>
-      <label><input type="radio" name="q2"> B) Haciendo mis propios esquemas o teorías.</label>
-      <label><input type="radio" name="q2"> C) Repitiendo lo que otros dicen.</label>
-    </div>
+      <div class="question">
+        <p>4. ¿Qué te molesta más?</p>
+        <label><input type="radio" name="q4" value="A"> A) La ignorancia voluntaria</label>
+        <label><input type="radio" name="q4" value="B"> B) La falta de empatía</label>
+        <label><input type="radio" name="q4" value="C"> C) La repetición sin propósito</label>
+      </div>
 
-    <div class="question">
-      <h3>3. ¿Qué te molesta más?</h3>
-      <label><input type="radio" name="q3"> A) Que alguien no entienda algo básico.</label>
-      <label><input type="radio" name="q3"> B) Que alguien dé por hecho que tiene razón sin pensar.</label>
-      <label><input type="radio" name="q3"> C) Que las cosas sean lentas o aburridas.</label>
-    </div>
+      <div class="question">
+        <p>5. ¿Cómo sueles conectar ideas?</p>
+        <label><input type="radio" name="q5" value="A"> A) Lógicamente</label>
+        <label><input type="radio" name="q5" value="B"> B) Por intuición</label>
+        <label><input type="radio" name="q5" value="C"> C) De forma creativa</label>
+      </div>
 
-    <div class="question">
-      <h3>4. Te dejan 2h sin móvil ni internet. ¿Qué haces?</h3>
-      <label><input type="radio" name="q4"> A) Me aburro como piedra.</label>
-      <label><input type="radio" name="q4"> B) Me pongo a imaginar cosas o crear.</label>
-      <label><input type="radio" name="q4"> C) Me echo una siesta o me distraigo.</label>
-    </div>
+      <div class="question">
+        <p>6. ¿Cómo manejas emociones intensas?</p>
+        <label><input type="radio" name="q6" value="A"> A) Las analizo</label>
+        <label><input type="radio" name="q6" value="B"> B) Las dejo fluir</label>
+        <label><input type="radio" name="q6" value="C"> C) Las transformo en acción o arte</label>
+      </div>
 
-    <div class="question">
-      <h3>5. ¿Has tenido ideas tan raras que no las compartes?</h3>
-      <label><input type="radio" name="q5"> A) Sí.</label>
-      <label><input type="radio" name="q5"> B) No.</label>
-      <label><input type="radio" name="q5"> C) A veces, pero las digo igual.</label>
-    </div>
+      <div class="question">
+        <p>7. ¿Cuál frase te representa más?</p>
+        <label><input type="radio" name="q7" value="A"> A) Saber es poder</label>
+        <label><input type="radio" name="q7" value="B"> B) Sentir es vivir</label>
+        <label><input type="radio" name="q7" value="C"> C) Crear es libertad</label>
+      </div>
 
-    <div class="question">
-      <h3>6. ¿Qué haces al ver una película que te gusta?</h3>
-      <label><input type="radio" name="q6"> A) La disfruto y ya.</label>
-      <label><input type="radio" name="q6"> B) Analizo todo y veo lo que nadie nota.</label>
-      <label><input type="radio" name="q6"> C) Me la echo y luego me olvido.</label>
-    </div>
+      <div class="question">
+        <p>8. ¿Qué prefieres hacer en tu tiempo libre?</p>
+        <label><input type="radio" name="q8" value="A"> A) Aprender cosas nuevas</label>
+        <label><input type="radio" name="q8" value="B"> B) Estar en paz</label>
+        <label><input type="radio" name="q8" value="C"> C) Hacer algo original</label>
+      </div>
 
-    <div class="question">
-      <h3>7. ¿Te da ansiedad entender más rápido que los demás?</h3>
-      <label><input type="radio" name="q7"> A) Sí, me pasa.</label>
-      <label><input type="radio" name="q7"> B) No, cada quien tiene su ritmo.</label>
-      <label><input type="radio" name="q7"> C) Nunca lo había pensado.</label>
-    </div>
+      <div class="question">
+        <p>9. ¿Cómo reaccionas ante ideas opuestas?</p>
+        <label><input type="radio" name="q9" value="A"> A) Intento entender su lógica</label>
+        <label><input type="radio" name="q9" value="B"> B) Me adapto</label>
+        <label><input type="radio" name="q9" value="C"> C) Amplío mi perspectiva</label>
+      </div>
 
-    <div class="question">
-      <h3>8. ¿Tu cabeza no se calla ni dormido?</h3>
-      <label><input type="radio" name="q8"> A) Siempre está activa.</label>
-      <label><input type="radio" name="q8"> B) Solo si estoy estresado.</label>
-      <label><input type="radio" name="q8"> C) No, yo apago rápido.</label>
-    </div>
+      <div class="question">
+        <p>10. Si pudieras mejorar tu mente, ¿qué cambiarías?</p>
+        <label><input type="radio" name="q10" value="A"> A) Memoria y concentración</label>
+        <label><input type="radio" name="q10" value="B"> B) Equilibrio emocional</label>
+        <label><input type="radio" name="q10" value="C"> C) Creatividad y rapidez mental</label>
+      </div>
 
-    <div class="question">
-      <h3>9. ¿Cómo eras con los adultos de niño?</h3>
-      <label><input type="radio" name="q9"> A) Casi no hablaba con ellos.</label>
-      <label><input type="radio" name="q9"> B) Me decían que parecía mayor o pensaba raro.</label>
-      <label><input type="radio" name="q9"> C) Solo temas básicos.</label>
-    </div>
+      <button type="submit">Ver resultado</button>
+    </form>
 
-    <div class="question">
-      <h3>10. ¿Sientes que no encajas por pensar distinto?</h3>
-      <label><input type="radio" name="q10"> A) Sí.</label>
-      <label><input type="radio" name="q10"> B) No.</label>
-      <label><input type="radio" name="q10"> C) A veces.</label>
-    </div>
+    <div id="result"></div>
+  </main>
 
-    <button type="button">Enviar respuestas</button>
-  </form>
-
-  <footer>
-    © 2025 Test de Inteligencia Real. Todos los derechos reservados.
-  </footer>
-
-  <script>
-    document.querySelector('button').addEventListener('click', function () {
-      const respuestas = [];
-      for (let i = 1; i <= 10; i++) {
-        const seleccionada = document.querySelector(`input[name="q${i}"]:checked`);
-        if (seleccionada) {
-          respuestas.push(seleccionada.parentElement.textContent.trim()[0]);
-        }
-      }
-
-      if (respuestas.length < 10) {
-        alert("Por favor responde todas las preguntas.");
-        return;
-      }
-
-      const conteo = { A: 0, B: 0, C: 0 };
-      respuestas.forEach(r => conteo[r]++);
-
-      let resultado = "";
-      let puntaje = 0;
-
-      if (conteo.B >= 6) {
-        puntaje = 9 + (conteo.B >= 8 ? 1 : 0);
-        resultado = `
-          🧠 <strong>Perfil Superdotado</strong> <br><br>
-          Eres una persona con pensamiento divergente y profundo. Tu mente analiza patrones invisibles para los demás y conecta ideas de distintas áreas. 
-          No aceptas lo que te dicen sin antes cuestionarlo. Sientes incomodidad con la rutina, necesitas libertad mental, y vives en una constante lluvia de ideas. 
-          Tu inteligencia no es solo lógica, también creativa e intuitiva. Tiendes a tener intereses múltiples, curiosidad intensa y puedes llegar a frustrarte cuando el entorno no te sigue el ritmo.<br><br>
-          <em>Características:</em>  
-          <ul style="text-align:left; margin-top:10px;">
-            <li>🧩 Capacidad de ver conexiones entre cosas aparentemente inconexas</li>
-            <li>🎯 Pensamiento abstracto e intuitivo</li>
-            <li>📚 Aprendizaje autodidacta veloz</li>
-            <li>👽 Sensación de “ser diferente” o no encajar</li>
-            <li>🔥 Curiosidad extrema y pensamiento crítico desde temprana edad</li>
-          </ul>
-        `;
-      } else if (conteo.B >= 4 || conteo.A >= 6) {
-        puntaje = 7 + (conteo.B === 5 || conteo.A >= 7 ? 1 : 0);
-        resultado = `
-          ⚙️ <strong>Perfil de Inteligencia Alta</strong> <br><br>
-          Tienes una mente estructurada, enfocada y lógica. Procesas información con rapidez y orden. Te gusta entender las cosas a fondo antes de actuar, sueles ser analítico y racional, pero también tienes momentos de intuición potente.
-          Aunque no siempre lo muestras, piensas más de lo que hablas. Eres de los que observan antes de opinar. Puedes destacar fácilmente en entornos técnicos, estratégicos o de toma de decisiones.<br><br>
-          <em>Características:</em>  
-          <ul style="text-align:left; margin-top:10px;">
-            <li>🧠 Alta capacidad de concentración y retención</li>
-            <li>📈 Tendencia a analizar antes de decidir</li>
-            <li>⚖️ Equilibrio entre lógica e intuición</li>
-            <li>🗣️ Puede parecer callado, pero guarda muchas ideas claras</li>
-            <li>💡 Buen solucionador de problemas, especialmente complejos</li>
-          </ul>
-        `;
-      } else {
-        puntaje = 4 + Math.floor(Math.random() * 3);
-        resultado = `
-          🤝 <strong>Perfil Cognitivo Medio</strong> <br><br>
-          Eres una persona adaptativa, funcional y práctica. Tu inteligencia se basa en la experiencia y el sentido común. No sueles sobrepensar todo y prefieres las cosas claras, directas y aplicables.
-          Te desenvuelves bien en contextos reales, sabes convivir con los demás y no complicas innecesariamente las cosas. Aunque no te encante analizar a fondo, entiendes lo necesario y te adaptas rápido a distintos ambientes.<br><br>
-          <em>Características:</em>  
-          <ul style="text-align:left; margin-top:10px;">
-            <li>🔧 Inteligencia práctica y funcional</li>
-            <li>😊 Sociabilidad y capacidad de adaptación</li>
-            <li>⏳ Prefiere lo inmediato a lo abstracto</li>
-            <li>💬 Buen manejo de normas y ambientes cotidianos</li>
-            <li>🔁 Tiende a confiar en lo aprendido más que en lo innovador</li>
-          </ul>
-        `;
-      }
-
-      const modal = document.createElement("div");
-      modal.innerHTML = `
-        <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;display:flex;justify-content:center;align-items:center;z-index:9999;">
-          <div style="background:#fff;padding:30px;border-radius:12px;max-width:600px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);overflow:auto;max-height:90vh;">
-            <h2>🧠 Resultado del Test</h2>
-            <p style="margin:20px 0;font-size:1.1em;">${resultado}</p>
-            <p style="font-size:1.4em;font-weight:bold;margin-top:15px;">🔢 Tu nivel de inteligencia es: <span style="color:var(--accent);">${puntaje}/10</span></p>
-            <button onclick="this.parentElement.parentElement.remove()" style="margin-top:20px;background:#007bff;color:white;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;">Cerrar</button>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(modal);
-    });
-  </script>
-
+  <script src="app.js"></script>
 </body>
 </html>
