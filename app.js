@@ -1,65 +1,81 @@
+// Test de Inteligencia — cálculo determinista + categorías: Promedio / Alta / Muy superior
 document.getElementById("intelligenceTest").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const form = e.target;
   const resultDiv = document.getElementById("result");
-  const values = [];
+  const dlBtn = document.getElementById("downloadImage");
 
+  // Recoger respuestas marcadas
+  const values = [];
   for (let i = 1; i <= 10; i++) {
     const checked = form.querySelector(`input[name="q${i}"]:checked`);
     if (checked) values.push(checked.value);
   }
 
+  // Si todo en blanco → aviso
   if (values.length === 0) {
     resultDiv.style.display = "block";
-    resultDiv.innerHTML = "⚠️ Por favor, responde al menos una pregunta para analizar tu perfil.";
-    document.getElementById("downloadImage").style.display = "none";
+    resultDiv.innerHTML = "⚠️ Por favor, responde al menos una pregunta para calcular tu nivel.";
+    dlBtn.style.display = "none";
     return;
   }
 
-  const count = { A: 0, B: 0, C: 0 };
-  values.forEach(v => count[v]++);
+  // Ponderación determinista: A=3, B=1, C=2 (se normaliza a 1-10 según las respondidas)
+  const weights = { A: 3, B: 1, C: 2 };
+  const answered = values.length;
+  const maxPossible = answered * 3;
+  const rawScore = values.reduce((acc, v) => acc + (weights[v] || 0), 0);
 
-  let nivel = 0;
-  let tipo = "";
-  let descripcion = "";
+  let nivel = Math.round((rawScore / maxPossible) * 10);
+  if (nivel < 1) nivel = 1;
+  if (nivel > 10) nivel = 10;
 
-  if (count.C >= 5) {
-    tipo = "Creativo Visionario";
-    nivel = 9 + Math.floor(Math.random() * 2);
-    descripcion = "Tienes una mente original, con fuerte pensamiento divergente. Eres capaz de ver soluciones donde otros solo ven problemas.";
-  } else if (count.A >= 5) {
-    tipo = "Lógico Estratégico";
-    nivel = 8 + Math.floor(Math.random() * 2);
-    descripcion = "Tu pensamiento estructurado y orientado al conocimiento revela signos de superdotación cognitiva racional.";
-  } else if (count.B >= 5) {
-    tipo = "Emocional Intuitivo";
-    nivel = 7 + Math.floor(Math.random() * 3);
-    descripcion = "Alta inteligencia emocional y profundidad psicológica. Tienes gran capacidad de conexión personal y reflexión.";
+  // Categorías según el nivel
+  // 1–4 → Promedio | 5–7 → Alta | 8–10 → Muy superior
+  let categoria = "";
+  if (nivel <= 4) {
+    categoria = "Promedio";
+  } else if (nivel <= 7) {
+    categoria = "Alta";
   } else {
-    tipo = "Híbrido Flexible";
-    nivel = 6 + Math.floor(Math.random() * 4);
-    descripcion = "Tienes un perfil versátil, capaz de combinar lógica, intuición y creatividad según la situación. Eres muy adaptable.";
+    categoria = "Muy superior";
   }
 
+  // (Opcional) desglose A/B/C por transparencia del cálculo
+  const count = { A: 0, B: 0, C: 0 };
+  values.forEach(v => count[v]++);
+  const pct = (k) => Math.round((count[k] / answered) * 100);
+
+  // Pintar resultado (clase .result-card tomada del style.css sugerido)
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `
     <div id="resultCard" class="result-card">
-      <h2>🧠 Resultado del Test</h2>
-      <p><strong>Perfil:</strong> ${tipo}</p>
-      <p><strong>Nivel de Inteligencia:</strong> ${nivel}/10</p>
-      <p><strong>Análisis:</strong> ${descripcion}</p>
+      <h2>🧮 Nivel de Inteligencia</h2>
+      <p style="font-size:24px;margin:.5rem 0;"><strong>${nivel}/10</strong></p>
+      <p><strong>Categoría:</strong> ${categoria}</p>
+      <p class="small" style="opacity:.8;margin-top:8px;">
+        Respondidas: ${answered}/10 · Desglose: A ${count.A} (${pct('A')}%) · B ${count.B} (${pct('B')}%) · C ${count.C} (${pct('C')}%)
+      </p>
     </div>
   `;
 
-  document.getElementById("downloadImage").style.display = "block";
+  dlBtn.style.display = "block";
 });
 
+// Descarga del resultado como imagen PNG de alta calidad
 document.getElementById("downloadImage").addEventListener("click", () => {
   const card = document.getElementById("resultCard");
-  html2canvas(card).then(canvas => {
+  if (!card) return;
+
+  html2canvas(card, {
+    backgroundColor: "#0f1222",                          // Fondo sólido para evitar transparencias
+    scale: window.devicePixelRatio > 1 ? 2 : 1.5,        // Mejor nitidez en móviles y pantallas HiDPI
+    useCORS: true
+  }).then(canvas => {
     const link = document.createElement("a");
-    link.download = "resultado_test_inteligencia.png";
+    const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+    link.download = `nivel-inteligencia-${stamp}.png`;
     link.href = canvas.toDataURL("image/png");
     link.click();
   });
