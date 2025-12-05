@@ -1,4 +1,3 @@
-// Test de Inteligencia — cálculo determinista + categorías: Promedio / Alta / Muy superior
 document.getElementById("intelligenceTest").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -32,22 +31,23 @@ document.getElementById("intelligenceTest").addEventListener("submit", function 
   if (nivel > 10) nivel = 10;
 
   // Categorías según el nivel
-  // 1–4 → Promedio | 5–7 → Alta | 8–10 → Muy superior
   let categoria = "";
   if (nivel <= 4) {
-    categoria = "Promedio";
+    categoria = "Nivel Bajo";
   } else if (nivel <= 7) {
-    categoria = "Alta";
+    categoria = "Nivel Medio";
+  } else if (nivel <= 9) {
+    categoria = "Nivel Alto";
   } else {
-    categoria = "Muy superior";
+    categoria = "Rasgos de Superdotación";
   }
 
-  // (Opcional) desglose A/B/C por transparencia del cálculo
+  // Desglose A/B/C por transparencia del cálculo
   const count = { A: 0, B: 0, C: 0 };
   values.forEach(v => count[v]++);
   const pct = (k) => Math.round((count[k] / answered) * 100);
 
-  // Pintar resultado (clase .result-card tomada del style.css sugerido)
+  // Pintar resultado
   resultDiv.style.display = "block";
   resultDiv.innerHTML = `
     <div id="resultCard" class="result-card">
@@ -55,7 +55,7 @@ document.getElementById("intelligenceTest").addEventListener("submit", function 
       <p style="font-size:24px;margin:.5rem 0;"><strong>${nivel}/10</strong></p>
       <p><strong>Categoría:</strong> ${categoria}</p>
       <p class="small" style="opacity:.8;margin-top:8px;">
-        Respondidas: ${answered}/10 · Desglose: A ${count.A} (${pct('A')}%) · B ${count.B} (${pct('B')}%) · C ${count.C} (${pct('C')}%)
+        Respondidas: ${answered}/10 · Desglose: A ${count.A} (${pct('A')}%) · B ${count.B} (${pct('B')}%) · C ${pct('C')}%
       </p>
     </div>
   `;
